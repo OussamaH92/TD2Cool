@@ -20,11 +20,13 @@ public class main
 		mbr.addMenuItem(new MenuItem("Reveil 4", "1 Cafe ou 1 Chocolat + 1 pain au chocolat + 1 tartine", 3.5));
 
 		// Le serveur
-		Waiter w = new Waiter(mbr, mrs);
+		Waiter w = new Waiter();
+		w.addMenu(mrs);
+		w.addMenu(mbr);
 		System.out.println("+++ Rapid Sandwich");
-		System.out.println(w.displayMenuRapidSandwich());
+		System.out.println(w.displayMenu("Carte du Rapid Sandwich"));
 		System.out.println("+++ Bon Reveil");
-		System.out.println(w.displayMenuBonReveil());
+		System.out.println(w.displayMenu("Carte du Bon Reveil"));
 		System.out.println("+++ Recuperation du sandwich americain");
 		System.out.println(w.displayMenuItem("L'americain"));
 		System.out.println("+++ Recuperation du reveil 3");

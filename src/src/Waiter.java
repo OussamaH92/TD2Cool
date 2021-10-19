@@ -1,22 +1,33 @@
+import java.util.ArrayList;
+
 public class Waiter
 {
-	private MenuBonReveil menuBonReveil;
-	private MenuRapidSandwich menuRapidSandwich;
+	private ArrayList<Menu> menu;
 
-	public Waiter(MenuBonReveil menuBonReveil, MenuRapidSandwich menuRapidSandwich)
+	public Waiter()
 	{
-		this.menuBonReveil = menuBonReveil;
-		this.menuRapidSandwich = menuRapidSandwich;
+		this.menu = new ArrayList<>();
 	}
 
-	public String displayMenuBonReveil()
-	{
-		return menuBonReveil.toString();
+	public void addMenu(Menu menu){
+		this.menu.add(menu);
 	}
 
-	public String displayMenuRapidSandwich()
+	private Menu isMenu(String menu){
+
+		Menu res = null;
+		for(Menu m : this.menu){
+			if(m.getName().equals(menu))res=m;
+		}
+		return res;
+	}
+
+	public String displayMenu(String menu)
 	{
-		return menuRapidSandwich.toString();
+
+		Menu m = isMenu(menu);
+		if(m==null)return "Menu not found.";
+		return m.toString();
 	}
 
 	public String displayMenuItem(String itemName)
@@ -48,21 +59,17 @@ public class Waiter
 
 	private MenuItem findMenuItemFrom(String itemName)
 	{
-		// on peut iterer sur les items de plusieurs manieres...
+
+		MenuItem res = null;
+
 		if (itemName != null)
 		{
-			// parcours avec un indice
-			MenuItem[] items = menuBonReveil.getMenuItems();
-			for (int i=0 ; i<items.length ; ++i)
-				if (items[i].getName() == itemName)
-					return items[i];
-
-			// parcours avec un foreach  
-			for (MenuItem item : menuRapidSandwich.getMenuItems())
-				if (item.getName() == itemName)
-					return item;
+			for(Menu m : this.menu){
+				res = m.findItem(itemName);
+				if(res != null) return res;
+			}
 		}
 		
-		return null;
+		return res;
 	}
 }

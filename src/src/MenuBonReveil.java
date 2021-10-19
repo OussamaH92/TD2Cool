@@ -1,7 +1,10 @@
-public class MenuBonReveil extends Menu
+import java.util.ArrayList;
+
+public class MenuBonReveil implements Menu
 {
 	private String name = "Carte du Bon Reveil";
 	private MenuItem[] items;
+	private IterateurTableau it;
 
 	public MenuBonReveil()
 	{
@@ -11,6 +14,22 @@ public class MenuBonReveil extends Menu
 	public String getName()
 	{
 		return name;
+	}
+
+	@Override
+	public MenuItem findItem(String itemName) {
+
+		IterateurTableau it = new IterateurTableau(items);
+
+		while(it.hasNext()){
+			MenuItem next = (MenuItem) it.getNext();
+			if(next.getName().equals(itemName)){
+				return next;
+			}
+		}
+
+		return null;
+
 	}
 
 	public MenuItem[] getMenuItems()
@@ -38,14 +57,4 @@ public class MenuBonReveil extends Menu
 		return ret;
 	}
 
-
-	@Override
-	public boolean hasNext(){
-		return false;
-	}
-
-	@Override
-	public Object getNext() {
-		return null;
-	}
 }
