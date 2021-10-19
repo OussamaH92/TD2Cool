@@ -18,19 +18,8 @@ public class MenuRapidSandwich implements Menu
 	}
 
 	@Override
-	public MenuItem findItem(String itemName) {
-
-		IterateurListe it = new IterateurListe(items);
-
-		while(it.hasNext()){
-			MenuItem next = (MenuItem) it.getNext();
-			if(next.getName().equals(itemName)){
-				return next;
-			}
-		}
-
-		return null;
-
+	public Iterable getIterator() {
+		return new IterateurListe(items);
 	}
 
 
@@ -39,7 +28,7 @@ public class MenuRapidSandwich implements Menu
 		return items;
 	}
 
-	@Override
+
 	public void addMenuItem(MenuItem item)
 	{
 		if (item == null)

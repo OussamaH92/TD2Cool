@@ -61,12 +61,21 @@ public class Waiter
 	{
 
 		MenuItem res = null;
+		Iterable it = null;
 
 		if (itemName != null)
 		{
 			for(Menu m : this.menu){
-				res = m.findItem(itemName);
-				if(res != null) return res;
+
+				it = m.getIterator();
+
+				while(it.hasNext()){
+					MenuItem next = (MenuItem) it.getNext();
+					if(next.getName().equals(itemName)){
+						return next;
+					}
+				}
+
 			}
 		}
 		

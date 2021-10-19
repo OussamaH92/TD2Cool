@@ -17,19 +17,8 @@ public class MenuBonReveil implements Menu
 	}
 
 	@Override
-	public MenuItem findItem(String itemName) {
-
-		IterateurTableau it = new IterateurTableau(items);
-
-		while(it.hasNext()){
-			MenuItem next = (MenuItem) it.getNext();
-			if(next.getName().equals(itemName)){
-				return next;
-			}
-		}
-
-		return null;
-
+	public Iterable getIterator() {
+		return new IterateurTableau(items);
 	}
 
 	public MenuItem[] getMenuItems()
